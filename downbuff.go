@@ -41,7 +41,7 @@ func Link(url string, config SockConf) (linknode linkc) {
 		config.Buffer = 2048
 	}
 	linkconfig := linkc{host: addr, buffer: config.Buffer, timeout: config.Timeout}
-	
+
 	if scheme == "https" {
 		var ref *tls.Conn
 		ref, err = tls.Dial("tcp", addr, &tls.Config{InsecureSkipVerify: false})
@@ -79,7 +79,7 @@ func (conn *linkc) Req(method reqmethod, body BodyRequest) (success bool, respon
 		withPayload = true
 	}
 	bodyRequest := append(headers, payload...)
-	
+
 	if wrted, err := conn.ref.Write(bodyRequest); wrted != len(bodyRequest) || err != nil {
 		panic(errWarn(SENDREQ_ERR, conn.host))
 	}

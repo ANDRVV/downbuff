@@ -338,7 +338,7 @@ type BodyResponse struct {
 	StatusCode  status
 	StatusText  string
 	Header      Header
-	UnkHeaders   map[string]string
+	UnkHeaders  map[string]string
 	Data        []byte
 }
 
