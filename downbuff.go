@@ -93,6 +93,8 @@ func (conn *linkc) Req(method reqmethod, body BodyRequest) (success bool, respon
 	if conn.timeout > 0 { // if timeout is not set bypass deadline
 		conn.ref.SetReadDeadline(time.Now().Add(conn.timeout))
 	}
+
+	conn.errormsg = nil
 	response = readFunc()
 	return conn.errormsg == nil, response
 }
