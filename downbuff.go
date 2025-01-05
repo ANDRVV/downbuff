@@ -50,9 +50,8 @@ func Link(url string, config SockConf) (linknode linkc) {
 		}
 		linkconfig.ref = refConn{Write: ref.Write, Read: ref.Read, SetReadDeadline: ref.SetReadDeadline, Close: ref.Close}
 	} else {
-		dialer := &net.Dialer{Timeout: config.Timeout}
 		var ref net.Conn
-		ref, err = dialer.Dial("tcp", addr)
+		ref, err = &net.Dialer{Timeout: config.Timeout}.Dial("tcp", addr)
 		if err != nil {
 			panic(errWarn(SOCKET_ERR, fmt.Sprintf("%s, %s", addr, err.Error())))
 		}
