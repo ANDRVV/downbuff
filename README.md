@@ -30,7 +30,7 @@ func main() {
 	baseRequest := downbuff.BodyRequest{Path: "/", HttpVersion: "1.1", Header: headers}
 
 	conn := downbuff.Link("https://google.com", downbuff.SockConf{Buffer: 2048, Timeout: 3 * time.Second})
-    defer conn.Quit()
+    	defer conn.Quit()
 
 	ok, response1 := conn.Req(downbuff.METHOD_GET, baseRequest)
 	if !ok {
